@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+
+    >
+    <!--tools:context=".MainActivity" ^^^ -->
+
+>
+
+
+    <TextView
+        android:id="@+id/winnerOrLoserText"
+        android:layout_width="203dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="10dp"
+        android:textSize="25dp"
+        android:textStyle="bold"
+
+        />
+
+
+    <ImageView
+    android:id="@+id/winnerOrLoser"
+    android:layout_width="250dp"
+    android:layout_height="250dp"
+    android:layout_marginTop="50dp"
+
+    android:layout_centerHorizontal="true"
+    />
+
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/Start_New_Game"
+        android:layout_width="300dp"
+        android:layout_height="70dp"
+        android:layout_alignTop="@id/winnerOrLoser"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="250dp"
+        android:layout_marginBottom="30dp"
+        android:maxLines="1"
+        android:inputType="text"
+        android:background="@color/colorAccent"
+        android:shadowRadius="@android:integer/config_shortAnimTime"
+        android:textColor="#ffffff"
+        app:cardCornerRadius="25dp"
+        app:cardElevation="10dp"
+        app:cardBackgroundColor="@color/colorAccent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Start A New Game!"
+            android:textColor="#fff"
+            android:layout_centerInParent="true"
+            android:textSize="30dp"
+            />
+        >
+    </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+
+
+
+
+
+
+</RelativeLayout>
