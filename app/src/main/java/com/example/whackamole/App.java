@@ -247,7 +247,7 @@ public class App extends AppCompatActivity {
         imageViewsArray[8] = findViewById(R.id.image22);
 
         imageViewsIds[0] = R.drawable.mole1;
-        imageViewsIds[1] = R.drawable.mole2;
+        imageViewsIds[1] = R.drawable.applogoandroid;
         imageViewsIds[2] = R.drawable.mole3;
         imageViewsIds[3] = R.drawable.mole4;
 

@@ -20,8 +20,8 @@
         android:layout_height="420dp"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="10dp"
+
         android:layout_marginRight="10dp"
-        android:background="@drawable/board"
         app:columnCount="3"
         app:rowCount="3">
 
@@ -32,6 +32,7 @@
             android:layout_margin="10dp"
             app:layout_column="0"
             app:layout_row="0"
+
             />
 
 

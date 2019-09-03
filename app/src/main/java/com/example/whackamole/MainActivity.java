@@ -13,18 +13,23 @@ import androidx.cardview.widget.CardView;
 
 public class MainActivity extends AppCompatActivity {
 
-    CardView cv;
+    CardView playButton;
     EditText userName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_activity);
-        cv = findViewById(R.id.playButton);
+
+        playButton = findViewById(R.id.playButton);
+
+        setPlayButtonStyle(playButton);
+
         userName = findViewById(R.id.nameText);
 
 
-        cv.setOnClickListener(new View.OnClickListener() {
+
+        playButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (userName.getText().toString().equals("")) {
@@ -34,10 +39,21 @@ public class MainActivity extends AppCompatActivity {
                 }
                 else {
                     openAppActivity();
-                    cv.setBackgroundColor(Color.GREEN);
+                    playButton.setCardBackgroundColor(Color.parseColor("#1EFF1E"));
                 }
             }
         });
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        setPlayButtonStyle(playButton);
+    }
+
+    private void setPlayButtonStyle(CardView playButton) {
+        playButton.setCardBackgroundColor(Color.parseColor("#FF137F"));
 
     }
 
