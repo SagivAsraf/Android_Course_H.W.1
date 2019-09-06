@@ -53,7 +53,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setPlayButtonStyle(CardView playButton) {
-        playButton.setCardBackgroundColor(Color.parseColor("#FF137F"));
+        if (playButton != null) {
+            playButton.setCardBackgroundColor(Color.parseColor("#FF137F"));
+        }
 
     }
 

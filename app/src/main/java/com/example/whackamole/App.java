@@ -3,6 +3,7 @@ package com.example.whackamole;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
+import androidx.core.content.ContextCompat;
 
 import android.graphics.Color;
 import android.graphics.Typeface;
@@ -13,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import java.util.Random;
@@ -21,13 +23,19 @@ public class App extends AppCompatActivity {
 
     final static int GAME_TIME = 30;
     final static int BOARD_SIZE = 9;
+    final static int NUM_OF_LIVES = 3;
     final static int MAX_ALLOW_MIESSES = 3;
     final static int MAX_POINTS = 30;
+
     TextView timeLeftText;
     TextView points;
-    TextView misses;
+    ImageView[] lifeImagesArray = new ImageView[NUM_OF_LIVES];
+
     ImageView[] imageViewsArray = new ImageView[BOARD_SIZE];
     int[] imagesId = new int[4];
+    ImageView[] plus1Array = new ImageView[BOARD_SIZE];
+    private int missesAmout;
+
     private String userName;
     private boolean isGameOver = false;
     private boolean isWinner = true;
@@ -37,15 +45,39 @@ public class App extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.app);
 
+        setImageLivesArray(lifeImagesArray);
+
+        setPlus1ImagesArray(plus1Array);
+
         userName = getIntent().getStringExtra(DataTransferBetweenActivities.PLAYER_NAME);
 
         timeLeftText = findViewById(R.id.timeLeftText);
         points = findViewById(R.id.pointsLabeValue);
-        misses = findViewById(R.id.missesText);
 
         getImageViewsAndIdsIntoArrays(imageViewsArray, imagesId);
         setClickListenerOnImages(imageViewsArray);
+
+
         startGame();
+    }
+
+    private void setPlus1ImagesArray(ImageView[] plus1Array) {
+        plus1Array[0] = findViewById(R.id.plus1image00);
+        plus1Array[1] = findViewById(R.id.plus1image01);
+        plus1Array[2] = findViewById(R.id.plus1image02);
+        plus1Array[3] = findViewById(R.id.plus1image10);
+        plus1Array[4] = findViewById(R.id.plus1image11);
+        plus1Array[5] = findViewById(R.id.plus1image12);
+        plus1Array[6] = findViewById(R.id.plus1image20);
+        plus1Array[7] = findViewById(R.id.plus1image21);
+        plus1Array[8] = findViewById(R.id.plus1image22);
+
+    }
+
+    private void setImageLivesArray(ImageView[] lifeImagesArray) {
+        lifeImagesArray[0] = findViewById(R.id.life1);
+        lifeImagesArray[1] = findViewById(R.id.life2);
+        lifeImagesArray[2] = findViewById(R.id.life3);
     }
 
     private void setClickListenerOnImages(final ImageView[] imageView) {
@@ -65,42 +97,46 @@ public class App extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 int pointsAmount = Integer.parseInt(points.getText().toString());
-                int missesAmount = Integer.parseInt(misses.getText().toString());
 
                 if (imageView.getDrawable() == null) {
                     mpMiss.start();
-                    missesAmount++;
-                    if (missesAmount >= MAX_ALLOW_MIESSES) {
-                        if(!getIsGameOver()){
+                    setMissesAmout(getMissesAmout() + 1);
+                    setLifesImages();
+                    if (getMissesAmout() >= MAX_ALLOW_MIESSES) {
+                        if (!getIsGameOver()) {
                             setIsWinner(false);
                             setGameOverAndShowPopUp();
                         }
 
                     }
-                    misses.setTypeface(misses.getTypeface(), Typeface.BOLD_ITALIC);
-                    points.setTypeface(null);
-                    misses.setTextColor(Color.parseColor("#FF0000"));
 
 
                 } else {
                     mpHit.start();
                     pointsAmount++;
+                    animatePlus1(view.getId());
                     if (pointsAmount >= MAX_POINTS) {
-                        if(!getIsGameOver()){
+                        if (!getIsGameOver()) {
                             setIsWinner(true);
                             setGameOverAndShowPopUp();
                         }
                     }
                     points.setTypeface(points.getTypeface(), Typeface.BOLD_ITALIC);
-                    misses.setTypeface(null);
-                    points.setTextColor(Color.parseColor("#008000"));
+                    //points.setTextColor(Color.parseColor("#008000"));
 
 
                 }
                 points.setText(pointsAmount + "");
-                misses.setText(missesAmount + "");
             }
         });
+    }
+
+    private void setLifesImages() {
+
+        if (getMissesAmout() != 0) {
+            lifeImagesArray[lifeImagesArray.length - getMissesAmout()].setBackgroundResource(0);
+        }
+
     }
 
 
@@ -167,6 +203,40 @@ public class App extends AppCompatActivity {
         }
 
 
+    }
+
+    private void animatePlus1(int imageViewId) {
+        int clickedImageView = findTheClickedImageView(imageViewId);
+        plus1Array[clickedImageView].setImageResource(R.drawable.plus1);
+        AlphaAnimation animation1 = new AlphaAnimation(1.0f, 0.0f);
+        animation1.setDuration(600);
+        animation1.setFillAfter(true);
+        plus1Array[clickedImageView].startAnimation(animation1);
+    }
+
+    private int findTheClickedImageView(int imageViewId) {
+
+        switch (imageViewId) {
+            case R.id.image00:
+                return 0;
+            case R.id.image01:
+                return 1;
+            case R.id.image02:
+                return 2;
+            case R.id.image10:
+                return 3;
+            case R.id.image11:
+                return 4;
+            case R.id.image12:
+                return 5;
+            case R.id.image20:
+                return 6;
+            case R.id.image21:
+                return 7;
+            case R.id.image22:
+                return 8;
+        }
+        return 0;
     }
 
 
@@ -268,5 +338,13 @@ public class App extends AppCompatActivity {
 
     public void setIsWinner(boolean winner) {
         isWinner = winner;
+    }
+
+    public int getMissesAmout() {
+        return missesAmout;
+    }
+
+    public void setMissesAmout(int missesAmout) {
+        this.missesAmout = missesAmout;
     }
 }

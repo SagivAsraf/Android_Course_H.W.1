@@ -28,7 +28,7 @@ public class CountDown {
             @Override
             public void onFinish() {
                 if (!app.getIsGameOver()) {
-                    if (Integer.parseInt(app.points.getText().toString()) <= Integer.parseInt(app.misses.getText().toString())) {
+                    if (Integer.parseInt(app.points.getText().toString()) <= app.getMissesAmout()) {
                         app.setIsWinner(false);
                     }
                     app.setGameOverAndShowPopUp();
