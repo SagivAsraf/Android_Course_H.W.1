@@ -29,14 +29,16 @@ public class App extends AppCompatActivity {
 
     TextView timeLeftText;
     TextView points;
-    ImageView[] lifeImagesArray = new ImageView[NUM_OF_LIVES];
 
+    ImageView[] lifeImagesArray = new ImageView[NUM_OF_LIVES];
     ImageView[] imageViewsArray = new ImageView[BOARD_SIZE];
-    int[] imagesId = new int[4];
     ImageView[] plus1Array = new ImageView[BOARD_SIZE];
+
+    int[] imagesId = new int[4];
     private int missesAmout;
 
     private String userName;
+
     private boolean isGameOver = false;
     private boolean isWinner = true;
 
@@ -62,6 +64,7 @@ public class App extends AppCompatActivity {
     }
 
     private void setPlus1ImagesArray(ImageView[] plus1Array) {
+
         plus1Array[0] = findViewById(R.id.plus1image00);
         plus1Array[1] = findViewById(R.id.plus1image01);
         plus1Array[2] = findViewById(R.id.plus1image02);
