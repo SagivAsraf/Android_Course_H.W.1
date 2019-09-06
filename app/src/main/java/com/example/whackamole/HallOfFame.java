@@ -1,6 +1,15 @@
 package com.example.whackamole;
 
-public class HallOfFame {
+import android.os.Bundle;
 
+import androidx.appcompat.app.AppCompatActivity;
+
+public class HallOfFame extends AppCompatActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.hall_of_fame);
+    }
 
 }

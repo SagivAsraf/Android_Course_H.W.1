@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
         dataManagement = DataManagement.createSingletonDM();
 
         playButton = findViewById(R.id.playButton);
-
+        hallOfFameButton = findViewById(R.id.hallOfFameButton);
         setPlayButtonStyle(playButton);
 
         userName = findViewById(R.id.nameText);
@@ -61,12 +61,12 @@ public class MainActivity extends AppCompatActivity {
                 openHallOfFameActivity();
             }});
         }
-    private void openHallOfFameActivity() {
-        Intent intent = new Intent(this,App.class);
-        intent.putExtra(DataTransferBetweenActivities.PLAYER_NAME, userName.getText().toString());
-        intent.putExtra(DataTransferBetweenActivities.COLLECTION,PLAYER_STATS);
-        intent.putExtra(DataTransferBetweenActivities.DOCUMENT,userName.getText().toString());
 
+    private void openHallOfFameActivity() {
+        Intent intent = new Intent(this,HallOfFame.class);
+//        intent.putExtra(DataTransferBetweenActivities.PLAYER_NAME, userName.getText().toString());
+//        intent.putExtra(DataTransferBetweenActivities.COLLECTION,PLAYER_STATS);
+//        intent.putExtra(DataTransferBetweenActivities.DOCUMENT,userName.getText().toString());
 
         startActivity(intent);
     }

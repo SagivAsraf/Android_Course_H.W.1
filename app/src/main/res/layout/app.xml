@@ -17,17 +17,6 @@
         android:height="60dp"
         android:background="@drawable/applogop" />
 
-    <!--<TextView-->
-    <!--android:layout_width="wrap_content"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:layout_marginTop="20dp"-->
-    <!--android:layout_marginLeft="60dp"-->
-    <!--android:height="60dp"-->
-    <!--android:width="280dp"-->
-    <!--android:textStyle="bold"-->
-    <!--android:text="Hack a Mole"-->
-    <!--android:textSize="50dp"-->
-    <!--/>-->
 
     <RelativeLayout
         android:layout_width="400dp"

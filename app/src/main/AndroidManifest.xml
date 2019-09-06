@@ -21,6 +21,11 @@
             android:name="com.example.whackamole.App"
             android:label="@string/app_name" />
 
+        <activity
+            android:name="com.example.whackamole.HallOfFame"
+            android:label="@string/app_name" />
+
+
     </application>
 
 </manifest>
