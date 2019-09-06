@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "394199569560",
+    "firebase_url": "https://androidcoursewhackamole.firebaseio.com",
+    "project_id": "androidcoursewhackamole",
+    "storage_bucket": "androidcoursewhackamole.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:394199569560:android:7dd8b880f03f3f0414aced",
+        "android_client_info": {
+          "package_name": "com.example.whackamole"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "394199569560-nvbqj3c88b95qm4l819tb0d4k2q2ut0e.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.whackamole",
+            "certificate_hash": "5e9a58d99f5b8fdaa99da894f349251f2def10e0"
+          }
+        },
+        {
+          "client_id": "394199569560-0cptomumpvteocjq44iofe2vf3t3qt63.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDyrJIz9SXweDM-4prET49Nd_y8oWxk_9A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "394199569560-0cptomumpvteocjq44iofe2vf3t3qt63.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
