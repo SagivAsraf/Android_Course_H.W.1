@@ -191,7 +191,6 @@ public class App extends AppCompatActivity {
                 return count > numOfMoles;
             }
 
-
             private void clearBoard() {
                 for (ImageView imageView : imageViewsArray) {
                     imageView.setImageResource(0);
