@@ -34,6 +34,7 @@ public class App extends AppCompatActivity {
     final static int NUM_OF_LIVES = 3;
     final static int MAX_ALLOW_MIESSES = 3;
     final static int MAX_POINTS = 30;
+    final static int NUM_CHARACTERS = 5;
 
     TextView timeLeftText;
     TextView points;
@@ -41,11 +42,12 @@ public class App extends AppCompatActivity {
     ImageView[] lifeImagesArray = new ImageView[NUM_OF_LIVES];
     ImageView[] imageViewsArray = new ImageView[BOARD_SIZE];
     ImageView[] plus1Array = new ImageView[BOARD_SIZE];
+    ImageView[] minus3Array = new ImageView[BOARD_SIZE];
 
     private DataManagement dataManagement;
     private FirebaseFirestore db;
 
-    int[] imagesId = new int[4];
+    int[] imagesId = new int[NUM_CHARACTERS];
     private int missesAmout;
 
     private String userName;
@@ -66,6 +68,8 @@ public class App extends AppCompatActivity {
         setImageLivesArray(lifeImagesArray);
 
         setPlus1ImagesArray(plus1Array);
+
+        setMinus3ImagesArray(minus3Array);
 
         getMainActivityData();
 
@@ -100,6 +104,20 @@ public class App extends AppCompatActivity {
 
     }
 
+    private void setMinus3ImagesArray(ImageView[] bombArray) {
+
+        bombArray[0] = findViewById(R.id.minus3image00);
+        bombArray[1] = findViewById(R.id.minus3image01);
+        bombArray[2] = findViewById(R.id.minus3image02);
+        bombArray[3] = findViewById(R.id.minus3image10);
+        bombArray[4] = findViewById(R.id.minus3image11);
+        bombArray[5] = findViewById(R.id.minus3image12);
+        bombArray[6] = findViewById(R.id.minus3image20);
+        bombArray[7] = findViewById(R.id.minus3image21);
+        bombArray[8] = findViewById(R.id.minus3image22);
+
+    }
+
     private void setImageLivesArray(ImageView[] lifeImagesArray) {
         lifeImagesArray[0] = findViewById(R.id.life1);
         lifeImagesArray[1] = findViewById(R.id.life2);
@@ -108,10 +126,11 @@ public class App extends AppCompatActivity {
 
     private void setClickListenerOnImages(final ImageView[] imageView) {
         for (int i = 0; i < imageView.length; i++) {
-            setClickListenerOnImage(imageViewsArray[i]);
+            setClickListenerOnImage(imageView[i]);
         }
 
     }
+
 
     private void setClickListenerOnImage(final ImageView imageView) {
 
@@ -139,22 +158,32 @@ public class App extends AppCompatActivity {
 
 
                 } else {
-                    mpHit.start();
-                    pointsAmount++;
-                    animatePlus1(view.getId());
-                    if (pointsAmount >= MAX_POINTS) {
-                        if (!getIsGameOver()) {
-                            setIsWinner(true);
-                            savePlayerStatsOnDB(pointsAmount,getMissesAmout());
-                            setGameOverAndShowPopUp();
+                    if ((imageView.getDrawable().getConstantState()!=null)&&imageView.getDrawable().getConstantState().equals(getResources().getDrawable(R.drawable.bomb).getConstantState())) {
+                        animateMinus3(view.getId());
+                        if (pointsAmount <= 3) {
+                            pointsAmount = 0;
+                        } else {
+                            pointsAmount = pointsAmount - 3;
                         }
+                        points.setTextColor(Color.RED);
+                    } else {
+                        mpHit.start();
+                        pointsAmount++;
+                        animatePlus1(view.getId());
+                        if (pointsAmount >= MAX_POINTS) {
+                            if (!getIsGameOver()) {
+                                setIsWinner(true);
+                                savePlayerStatsOnDB(pointsAmount,getMissesAmout());
+                                setGameOverAndShowPopUp();
+                            }
+                        }
+                        points.setTypeface(points.getTypeface(), Typeface.BOLD_ITALIC);
+                        points.setTextColor(Color.WHITE);
                     }
-                    points.setTypeface(points.getTypeface(), Typeface.BOLD_ITALIC);
-                    //points.setTextColor(Color.parseColor("#008000"));
-
 
                 }
                 points.setText(pointsAmount + "");
+
             }
         });
     }
@@ -261,6 +290,16 @@ public class App extends AppCompatActivity {
         plus1Array[clickedImageView].startAnimation(animation1);
     }
 
+
+    private void animateMinus3(int imageViewId) {
+        int clickedImageView = findTheClickedImageView(imageViewId);
+        plus1Array[clickedImageView].setImageResource(R.drawable.minus3points);
+        AlphaAnimation animation1 = new AlphaAnimation(1.0f, 0.0f);
+        animation1.setDuration(600);
+        animation1.setFillAfter(true);
+        plus1Array[clickedImageView].startAnimation(animation1);
+    }
+
     private int findTheClickedImageView(int imageViewId) {
 
         switch (imageViewId) {
@@ -293,6 +332,7 @@ public class App extends AppCompatActivity {
         animation1.setFillAfter(true);
         image.startAnimation(animation1);
     }
+
 
     private void startGameTimer() {
         new CountDown().startGameTimer(this, GAME_TIME, timeLeftText);
@@ -367,6 +407,7 @@ public class App extends AppCompatActivity {
         imageViewsIds[1] = R.drawable.applogoandroid;
         imageViewsIds[2] = R.drawable.mole3;
         imageViewsIds[3] = R.drawable.mole4;
+        imageViewsIds[4] =R.drawable.bomb;
 
 
     }
