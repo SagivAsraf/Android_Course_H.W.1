@@ -74,7 +74,17 @@
     </androidx.cardview.widget.CardView>
 
 
+    <Button
+        android:id="@+id/hallOfFameButton"
+        android:layout_width="125dp"
+        android:layout_height="50dp"
+        android:layout_alignTop="@+id/playButton"
+        android:text="Hall of fame"
+        android:background="@color/cardview_dark_background"
+        android:layout_marginTop="100dp"
+        android:layout_marginLeft="50dp"
 
+        />
 
 
 

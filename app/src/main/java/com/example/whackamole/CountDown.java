@@ -29,6 +29,7 @@ public class CountDown {
             public void onFinish() {
                 if (!app.getIsGameOver()) {
                     if (Integer.parseInt(app.points.getText().toString()) <= app.getMissesAmout()) {
+                        app.savePlayerStatsOnDB(Integer.parseInt(app.points.getText().toString()),app.getMissesAmout());
                         app.setIsWinner(false);
                     }
                     app.setGameOverAndShowPopUp();

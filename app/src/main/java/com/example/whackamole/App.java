@@ -17,7 +17,15 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.HashMap;
+
+import java.util.Map;
 import java.util.Random;
+
+import Data.DataCols;
+import Data.DataManagement;
 
 public class App extends AppCompatActivity {
 
@@ -34,10 +42,15 @@ public class App extends AppCompatActivity {
     ImageView[] imageViewsArray = new ImageView[BOARD_SIZE];
     ImageView[] plus1Array = new ImageView[BOARD_SIZE];
 
+    private DataManagement dataManagement;
+    private FirebaseFirestore db;
+
     int[] imagesId = new int[4];
     private int missesAmout;
 
     private String userName;
+    private String collectionName;
+    private String documentName;
 
     private boolean isGameOver = false;
     private boolean isWinner = true;
@@ -47,11 +60,15 @@ public class App extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.app);
 
+        dataManagement = DataManagement.createSingletonDM();
+        db = dataManagement.getFireBaseInstance();
+
         setImageLivesArray(lifeImagesArray);
 
         setPlus1ImagesArray(plus1Array);
 
-        userName = getIntent().getStringExtra(DataTransferBetweenActivities.PLAYER_NAME);
+        getMainActivityData();
+
 
         timeLeftText = findViewById(R.id.timeLeftText);
         points = findViewById(R.id.pointsLabeValue);
@@ -61,6 +78,12 @@ public class App extends AppCompatActivity {
 
 
         startGame();
+    }
+
+    private void getMainActivityData() {
+        userName = getIntent().getStringExtra(DataTransferBetweenActivities.PLAYER_NAME);
+        collectionName = getIntent().getStringExtra(DataTransferBetweenActivities.COLLECTION);
+        documentName = getIntent().getStringExtra(DataTransferBetweenActivities.DOCUMENT);
     }
 
     private void setPlus1ImagesArray(ImageView[] plus1Array) {
@@ -108,6 +131,7 @@ public class App extends AppCompatActivity {
                     if (getMissesAmout() >= MAX_ALLOW_MIESSES) {
                         if (!getIsGameOver()) {
                             setIsWinner(false);
+                            savePlayerStatsOnDB(pointsAmount,getMissesAmout());
                             setGameOverAndShowPopUp();
                         }
 
@@ -121,6 +145,7 @@ public class App extends AppCompatActivity {
                     if (pointsAmount >= MAX_POINTS) {
                         if (!getIsGameOver()) {
                             setIsWinner(true);
+                            savePlayerStatsOnDB(pointsAmount,getMissesAmout());
                             setGameOverAndShowPopUp();
                         }
                     }
@@ -132,6 +157,26 @@ public class App extends AppCompatActivity {
                 points.setText(pointsAmount + "");
             }
         });
+    }
+
+    public void savePlayerStatsOnDB(int pointsAmount, int missesAmout) {
+
+        Map<String,Object> players = new HashMap<>();
+
+        Player player = new Player(userName,pointsAmount,missesAmout);
+
+        players.put(DataCols.NAME,player.getName());
+        players.put(DataCols.POINTS,player.getPoints());
+        players.put(DataCols.MISSES,player.getMisses());
+
+        dataManagement.saveData(collectionName,documentName,players);
+
+//        List<Map<String,Object>> myList = new LinkedList<>();
+//
+//        dataManagement.readData(collectionName,documentName,myList);
+
+
+
     }
 
     private void setLifesImages() {
