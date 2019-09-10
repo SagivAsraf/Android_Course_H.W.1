@@ -7,6 +7,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -17,6 +18,8 @@ import java.util.Map;
 public class DataManagement {
 
     private static DataManagement dataManagement;
+    private static FirebaseDatabase database;
+
     private static FirebaseFirestore firebaseFirestore;
 
     public DataManagement() {
@@ -26,6 +29,7 @@ public class DataManagement {
         if (dataManagement == null) {
             dataManagement = new DataManagement();
             firebaseFirestore = getFireBaseInstance();
+            database = FirebaseDatabase.getInstance();
         }
         return dataManagement;
     }
@@ -51,7 +55,9 @@ public class DataManagement {
                 });
     }
 
-    public void readData(String collectionName, final String document, final List<Map<String, Object>> data) {
+    public void readData(final FireStoreCallback callback, String collectionName, final List<Map<String, Object>> data) {
+
+
         firebaseFirestore.collection(collectionName)
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -61,6 +67,7 @@ public class DataManagement {
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 data.add(document.getData());
                             }
+                            callback.onCallback(data);
                         } else {
                             System.out.println("Error getting documents." + task.getException());
                         }

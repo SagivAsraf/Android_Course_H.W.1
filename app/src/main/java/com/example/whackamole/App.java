@@ -45,7 +45,7 @@ public class App extends AppCompatActivity {
     ImageView[] minus3Array = new ImageView[BOARD_SIZE];
 
     private DataManagement dataManagement;
-    private FirebaseFirestore db;
+   //private FirebaseFirestore db;
 
     int[] imagesId = new int[NUM_CHARACTERS];
     private int missesAmout;
@@ -63,7 +63,7 @@ public class App extends AppCompatActivity {
         setContentView(R.layout.app);
 
         dataManagement = DataManagement.createSingletonDM();
-        db = dataManagement.getFireBaseInstance();
+         //db = dataManagement.getFireBaseInstance();
 
         setImageLivesArray(lifeImagesArray);
 
@@ -200,9 +200,7 @@ public class App extends AppCompatActivity {
 
         dataManagement.saveData(collectionName,documentName,players);
 
-//        List<Map<String,Object>> myList = new LinkedList<>();
-//
-//        dataManagement.readData(collectionName,documentName,myList);
+
 
 
 

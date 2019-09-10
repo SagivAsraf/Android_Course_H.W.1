@@ -34,4 +34,5 @@ dependencies {
 
     implementation 'androidx.gridlayout:gridlayout:1.0.0'
     implementation 'androidx.cardview:cardview:1.0.0'
+    implementation 'com.google.firebase:firebase-database:19.0.0'
 }

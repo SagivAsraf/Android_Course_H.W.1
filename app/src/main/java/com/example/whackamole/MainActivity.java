@@ -29,14 +29,12 @@ public class MainActivity extends AppCompatActivity {
     Button hallOfFameButton;
     private final static String PLAYER_STATS = "Players_Stats";
 
-    private DataManagement dataManagement;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_activity);
 
-        dataManagement = DataManagement.createSingletonDM();
 
         playButton = findViewById(R.id.playButton);
         hallOfFameButton = findViewById(R.id.hallOfFameButton);
@@ -65,8 +63,8 @@ public class MainActivity extends AppCompatActivity {
     private void openHallOfFameActivity() {
         Intent intent = new Intent(this,HallOfFame.class);
 //        intent.putExtra(DataTransferBetweenActivities.PLAYER_NAME, userName.getText().toString());
-//        intent.putExtra(DataTransferBetweenActivities.COLLECTION,PLAYER_STATS);
-//        intent.putExtra(DataTransferBetweenActivities.DOCUMENT,userName.getText().toString());
+        intent.putExtra(DataTransferBetweenActivities.COLLECTION,PLAYER_STATS);
+        intent.putExtra(DataTransferBetweenActivities.DOCUMENT,userName.getText().toString());
 
         startActivity(intent);
     }
