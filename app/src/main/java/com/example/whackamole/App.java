@@ -136,6 +136,7 @@ public class App extends AppCompatActivity {
 
         final MediaPlayer mpHit = MediaPlayer.create(this, R.raw.success);
         final MediaPlayer mpMiss = MediaPlayer.create(this, R.raw.miss);
+        final MediaPlayer mpBomb = MediaPlayer.create(this, R.raw.bomb);
 
 
         imageView.setOnClickListener(new View.OnClickListener() {
@@ -159,6 +160,7 @@ public class App extends AppCompatActivity {
 
                 } else {
                     if ((imageView.getDrawable().getConstantState()!=null)&&imageView.getDrawable().getConstantState().equals(getResources().getDrawable(R.drawable.bomb).getConstantState())) {
+                        mpBomb.start();
                         animateMinus3(view.getId());
                         if (pointsAmount <= 3) {
                             pointsAmount = 0;

@@ -4,11 +4,13 @@ import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.Gravity;
+import android.view.View;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 
 import java.util.Collections;
 import java.util.Comparator;
@@ -36,6 +38,14 @@ public class HallOfFame extends AppCompatActivity {
 
         dataManagement = DataManagement.createSingletonDM();
 
+        CardView backButton = findViewById(R.id.returnButton);
+
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
 
         addRowsToTable();
 
@@ -166,6 +176,8 @@ public class HallOfFame extends AppCompatActivity {
         });
 
     }
+
+
 
 
     private void getMainActivityData() {
