@@ -28,21 +28,7 @@ public class MainActivity extends AppCompatActivity {
     EditText userName;
     CardView hallOfFameButton;
     private final static String PLAYER_STATS = "Players_Stats";
-    private final int NUMBER_OF_REQUEST = 1;
-    private final int TIME_FOR_NEW_REQUEST = 6000000;
-    private LocationManager locationManager;
-    private LocationListener locationListener;
 
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-
-        if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED && requestCode==1) {
-
-            if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED)
-                locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, TIME_FOR_NEW_REQUEST, 0, locationListener);
-        }
-    }
 
 
     @Override
@@ -50,52 +36,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_activity);
 
-        locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
 
-        locationListener = new LocationListener() {
-
-            @Override
-            public void onLocationChanged(Location location) {
-
-                Log.i("Location", location.toString());
-            }
-
-            @Override
-            public void onStatusChanged(String s, int i, Bundle bundle) {
-
-            }
-
-            @Override
-            public void onProviderEnabled(String s) {
-
-            }
-
-            @Override
-            public void onProviderDisabled(String s) {
-
-            }
-        };
-
-        //If device is running sdk<23
-        if (Build.VERSION.SDK_INT < 23)
-        {
-            if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED)
-                locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, TIME_FOR_NEW_REQUEST, 0, locationListener);
-        }else {
-            if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-                //ask for permission
-
-                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, NUMBER_OF_REQUEST);
-
-
-            } else
-            //We have a permission
-            {
-                locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, TIME_FOR_NEW_REQUEST, 0, locationListener);
-
-
-            }
-        }
 
         playButton = findViewById(R.id.playButton);
         hallOfFameButton = findViewById(R.id.hallOfFameButton);
@@ -123,6 +64,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void openHallOfFameActivity() {
         Intent intent = new Intent(this,HallOfFame.class);
+
         intent.putExtra(DataTransferBetweenActivities.COLLECTION,PLAYER_STATS);
         intent.putExtra(DataTransferBetweenActivities.DOCUMENT,userName.getText().toString());
 

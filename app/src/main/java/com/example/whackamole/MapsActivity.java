@@ -3,6 +3,7 @@ package com.example.whackamole;
 import androidx.fragment.app.FragmentActivity;
 
 import android.os.Bundle;
+import android.provider.ContactsContract;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -14,6 +15,8 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.util.List;
 import java.util.Map;
+
+import Data.DataCols;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
@@ -33,7 +36,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
-       // getPlayersData();
+        getPlayersData();
 
     }
 
@@ -58,12 +61,35 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
-        // Add a marker in Sydney and move the camera
         LatLng israel = new LatLng(LAT_ISRAEL, LNG_ISRAEL);
-        //LatLng SAGIV = new LatLng(32.2344278, 34.7740178);
-        mMap.addMarker(new MarkerOptions().position(israel).title("Marker in Israel").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED)));
+
+        addPlayersMarkers(mMap);
+
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(israel, ZOOM_IN_OUT));
-       // mMap.addMarker(new MarkerOptions().position(SAGIV).title("Sagiv").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED)));
-        // mMap.moveCamera(CameraUpdateFactory.newLatLng(SAGIV));
+
+
+    }
+
+    private void addPlayersMarkers(GoogleMap mMap) {
+
+
+            for (int i = 0; i < playersData.size() && i < 10; i++) {
+
+                Map<String, Object> player = playersData.get(i);
+
+                LatLng latLng = new LatLng((Double) player.get(DataCols.LAT), (Double) player.get(DataCols.LNG));
+                String playerDetails =
+                        "Name: " + player.get(DataCols.NAME).toString()
+                                + " Points: "
+                                + player.get(DataCols.POINTS).toString()
+                                + " Misses: "
+                                + player.get(DataCols.MISSES).toString();
+                mMap.addMarker(new MarkerOptions().position(latLng).title("Player Stats: ").snippet(playerDetails).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED)));
+            }
+
+
+
+
+
     }
 }

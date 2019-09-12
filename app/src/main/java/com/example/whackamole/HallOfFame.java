@@ -30,18 +30,22 @@ public class HallOfFame extends AppCompatActivity {
     private String documentName;
     private DataManagement dataManagement;
     private List<Map<String, Object>> playersList;
+    private List<Map<String, Object>> sortedPlayerList;
+    private CardView mapButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.hall_of_fame);
 
+
         getMainActivityData();
 
         dataManagement = DataManagement.createSingletonDM();
 
         CardView backButton = findViewById(R.id.returnButton);
-        CardView mapButton = findViewById(R.id.mapButton);
+        mapButton = findViewById(R.id.mapButton);
+        mapButton.setEnabled(false);
 
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -71,7 +75,9 @@ public class HallOfFame extends AppCompatActivity {
             @Override
             public void onCallback(List<Map<String, Object>> returnedPlayersList) {
                 sortListByPoints(returnedPlayersList);
+                sortedPlayerList = returnedPlayersList;
                 fillTableWithData(returnedPlayersList);
+                mapButton.setEnabled(true);
             }
         }, collectionName, playersList);
 
@@ -199,7 +205,9 @@ public class HallOfFame extends AppCompatActivity {
 
 
     private void getMainActivityData() {
+
         collectionName = getIntent().getStringExtra(DataTransferBetweenActivities.COLLECTION);
         documentName = getIntent().getStringExtra(DataTransferBetweenActivities.DOCUMENT);
+
     }
 }
