@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
 
-        if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+        if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED && requestCode==1) {
 
             if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED)
                 locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, TIME_FOR_NEW_REQUEST, 0, locationListener);
@@ -92,6 +92,7 @@ public class MainActivity extends AppCompatActivity {
             //We have a permission
             {
                 locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, TIME_FOR_NEW_REQUEST, 0, locationListener);
+
 
             }
         }
