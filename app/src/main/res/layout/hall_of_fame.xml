@@ -11,54 +11,23 @@
 
     <ImageView
         android:layout_width="wrap_content"
-        android:layout_height="137dp"
+        android:layout_height="130dp"
         android:layout_marginLeft="10dp"
-        android:width="280dp"
-        android:height="60dp"
-        android:background="@drawable/applogop" />
+        android:background="@drawable/halloffamelogo" />
 
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="120dp"
+        android:layout_marginLeft="130dp"
+        android:background="@drawable/cup" />
 
     <TableLayout
         android:id="@+id/playersTable"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginVertical="30dp"
+        android:layout_height="387dp"
         android:layout_marginHorizontal="10dp"
-        >
-
-
-        <TableRow>
-
-
-            <TextView
-                android:text="Name"
-                android:textSize="30dp"
-                android:textStyle="bold"
-                android:layout_marginLeft="3dp"
-                android:layout_gravity="center"
-
-
-                />
-
-            <TextView
-                android:text="Points"
-                android:textSize="30dp"
-                android:textStyle="bold"
-                android:layout_marginLeft="3dp"
-                android:layout_gravity="center"
-
-                />
-            <TextView
-                android:text="Misses"
-                android:textSize="30dp"
-                android:textStyle="bold"
-                android:layout_marginLeft="3dp"
-                android:layout_gravity="center"
-                />
-
-        </TableRow>
-
-
+        android:layout_marginVertical="30dp"
+        android:background="#BDBDBD">
 
 
     </TableLayout>

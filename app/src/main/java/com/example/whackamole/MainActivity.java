@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
 
     CardView playButton;
     EditText userName;
-    Button hallOfFameButton;
+    CardView hallOfFameButton;
     private final static String PLAYER_STATS = "Players_Stats";
 
 
@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void setHallOfFameClickListener(Button hallOfFameButton) {
+    private void setHallOfFameClickListener(CardView hallOfFameButton) {
         hallOfFameButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
