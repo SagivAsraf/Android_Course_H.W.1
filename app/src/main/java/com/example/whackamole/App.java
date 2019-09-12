@@ -153,9 +153,8 @@ public class App extends AppCompatActivity {
             if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
                 //ask for permission
                 ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, NUMBER_OF_REQUEST);
-            } else
-            //We have a permission
-            {
+            } else {
+                //We have a permission
                 locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, TIME_FOR_NEW_REQUEST, 0, locationListener);
             }
         }
@@ -165,10 +164,6 @@ public class App extends AppCompatActivity {
         userName = getIntent().getStringExtra(DataTransferBetweenActivities.PLAYER_NAME);
         collectionName = getIntent().getStringExtra(DataTransferBetweenActivities.COLLECTION);
         documentName = getIntent().getStringExtra(DataTransferBetweenActivities.DOCUMENT);
-
-//        lat = getIntent().getDoubleExtra(DataTransferBetweenActivities.LAT, 0d);
-//        lng = getIntent().getDoubleExtra(DataTransferBetweenActivities.LNG,0d);
-
 
     }
 

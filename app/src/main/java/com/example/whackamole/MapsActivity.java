@@ -73,7 +73,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private void addPlayersMarkers(GoogleMap mMap) {
 
 
-            for (int i = 0; i < playersData.size() && i < 10; i++) {
+            for (int i = 0; i < playersData.size() && i < HallOfFame.NUM_OF_HIGLIGHTS_PLAYER; i++) {
 
                 Map<String, Object> player = playersData.get(i);
 

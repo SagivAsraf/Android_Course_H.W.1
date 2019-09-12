@@ -32,6 +32,7 @@ public class HallOfFame extends AppCompatActivity {
     private List<Map<String, Object>> playersList;
     private List<Map<String, Object>> sortedPlayerList;
     private CardView mapButton;
+    protected final static int NUM_OF_HIGLIGHTS_PLAYER = 10;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,7 +95,7 @@ public class HallOfFame extends AppCompatActivity {
         TableRow.LayoutParams lp = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT);
         addHeaderRow(lp,table,params);
 
-        for (int i = 0; i < 10 && i < returnedPlayersList.size(); i++) {
+        for (int i = 0; i < NUM_OF_HIGLIGHTS_PLAYER && i < returnedPlayersList.size(); i++) {
             addPlayerToTable(lp,table,params,returnedPlayersList,i);
         }
     }
