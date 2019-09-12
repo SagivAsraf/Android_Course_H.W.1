@@ -2,17 +2,12 @@ package com.example.whackamole;
 
 import android.graphics.Color;
 import android.graphics.Typeface;
-import android.os.Build;
 import android.os.Bundle;
-import android.text.Layout;
 import android.view.Gravity;
-import android.view.ViewGroup;
-import android.widget.LinearLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.Collections;
@@ -73,7 +68,7 @@ public class HallOfFame extends AppCompatActivity {
         TableRow.LayoutParams lp = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT);
         addHeaderRow(lp,table,params);
 
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 10 && i < returnedPlayersList.size(); i++) {
             addPlayerToTable(lp,table,params,returnedPlayersList,i);
         }
     }
