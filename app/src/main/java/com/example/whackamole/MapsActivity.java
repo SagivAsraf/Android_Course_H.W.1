@@ -12,12 +12,17 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import java.util.List;
+import java.util.Map;
+
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
-    private final int ZOOM_IN_OUT=8;
-    private final double LAT_ISRAEL=31.2344278;
-    private final double LNG_ISRAEL=34.7740178;
+    private final int ZOOM_IN_OUT = 8;
+    private final double LAT_ISRAEL = 31.2344278;
+    private final double LNG_ISRAEL = 34.7740178;
+    private List<Map<String, Object>> playersData;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +32,16 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+
+       // getPlayersData();
+
+    }
+
+    private void getPlayersData() {
+
+        playersData = (List<Map<String, Object>>) getIntent().getSerializableExtra("List");
+
+        System.out.println(playersData);
     }
 
 
@@ -45,10 +60,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         // Add a marker in Sydney and move the camera
         LatLng israel = new LatLng(LAT_ISRAEL, LNG_ISRAEL);
-        LatLng SAGIV = new LatLng(32.2344278, 34.7740178);
+        //LatLng SAGIV = new LatLng(32.2344278, 34.7740178);
         mMap.addMarker(new MarkerOptions().position(israel).title("Marker in Israel").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED)));
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(israel,ZOOM_IN_OUT));
-        mMap.addMarker(new MarkerOptions().position(SAGIV).title("Sagiv").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED)));
-       // mMap.moveCamera(CameraUpdateFactory.newLatLng(SAGIV));
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(israel, ZOOM_IN_OUT));
+       // mMap.addMarker(new MarkerOptions().position(SAGIV).title("Sagiv").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED)));
+        // mMap.moveCamera(CameraUpdateFactory.newLatLng(SAGIV));
     }
 }

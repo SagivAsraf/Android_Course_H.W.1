@@ -1,5 +1,6 @@
 package com.example.whackamole;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -12,6 +13,7 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
+import java.io.Serializable;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.LinkedList;
@@ -27,7 +29,7 @@ public class HallOfFame extends AppCompatActivity {
     private String collectionName;
     private String documentName;
     private DataManagement dataManagement;
-
+    private List<Map<String, Object>> playersList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,11 +41,19 @@ public class HallOfFame extends AppCompatActivity {
         dataManagement = DataManagement.createSingletonDM();
 
         CardView backButton = findViewById(R.id.returnButton);
+        CardView mapButton = findViewById(R.id.mapButton);
 
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 finish();
+            }
+        });
+
+        mapButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openMapPlayersLocation(playersList);
             }
         });
 
@@ -54,7 +64,7 @@ public class HallOfFame extends AppCompatActivity {
 
     private void addRowsToTable() {
 
-        List<Map<String, Object>> playersList = new LinkedList<>();
+        playersList = new LinkedList<>();
 
         /*FirseStore loads data asynchronously*/
         dataManagement.readData(new FireStoreCallback() {
@@ -177,7 +187,15 @@ public class HallOfFame extends AppCompatActivity {
 
     }
 
+    private void openMapPlayersLocation(List<Map<String,Object>> playersResults) {
+        Intent intent = new Intent(this,MapsActivity.class);
 
+        intent.putExtra("List", (Serializable) playersResults);
+
+
+        startActivity(intent);
+
+    }
 
 
     private void getMainActivityData() {
