@@ -1,4 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -6,21 +12,21 @@
     android:layout_height="match_parent"
     android:background="@drawable/background"
     android:orientation="vertical"
+    android:gravity="center_horizontal"
     tools:context=".App">
 
 
     <ImageView
-        android:layout_width="wrap_content"
         android:layout_height="137dp"
+        android:layout_width="wrap_content"
         android:layout_marginLeft="10dp"
-        android:width="280dp"
-        android:height="60dp"
         android:background="@drawable/applogop" />
 
     <RelativeLayout
-        android:layout_width="400dp"
+        android:layout_width="wrap_content"
         android:layout_height="100dp"
-        android:layout_marginLeft="70dp">
+        android:gravity="center"
+        >
 
 
         <ImageView
@@ -35,7 +41,6 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_margin="20dp"
-            android:layout_marginRight="50dp"
             android:layout_toRightOf="@+id/life1"
             android:background="@drawable/life" />
 
@@ -51,12 +56,9 @@
 
 
     <androidx.gridlayout.widget.GridLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="420dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="5dp"
-
-
+        android:layout_gravity="center"
         app:layout_column="3"
         app:layout_row="3">
 
@@ -70,6 +72,7 @@
             app:layout_row="0"
 
             />
+
         <ImageView
             android:id="@+id/plus1image00"
             android:layout_width="40dp"
@@ -107,10 +110,12 @@
             app:layout_row="0"
 
             />
+
         <ImageView
             android:id="@+id/minus3image01"
             android:layout_width="40dp"
             android:layout_height="40dp"
+
 
             app:layout_column="1"
             app:layout_row="0"
@@ -126,23 +131,23 @@
             app:layout_row="0" />
 
 
-
         <ImageView
             android:id="@+id/plus1image02"
             android:layout_width="40dp"
             android:layout_height="40dp"
 
-            app:layout_row="0"
             app:layout_column="2"
+            app:layout_row="0"
 
             />
+
         <ImageView
             android:id="@+id/minus3image02"
             android:layout_width="40dp"
             android:layout_height="40dp"
 
-            app:layout_row="0"
             app:layout_column="2"
+            app:layout_row="0"
 
             />
 
@@ -161,17 +166,18 @@
             android:layout_width="40dp"
             android:layout_height="40dp"
 
-            app:layout_row="1"
             app:layout_column="0"
+            app:layout_row="1"
 
             />
+
         <ImageView
             android:id="@+id/minus3image10"
             android:layout_width="40dp"
             android:layout_height="40dp"
 
-            app:layout_row="1"
             app:layout_column="0"
+            app:layout_row="1"
 
             />
 
@@ -187,17 +193,18 @@
             android:layout_width="40dp"
             android:layout_height="40dp"
 
-            app:layout_row="1"
             app:layout_column="1"
+            app:layout_row="1"
 
             />
+
         <ImageView
             android:id="@+id/minus3image11"
             android:layout_width="40dp"
             android:layout_height="40dp"
 
-            app:layout_row="1"
             app:layout_column="1"
+            app:layout_row="1"
 
             />
 
@@ -213,17 +220,18 @@
             android:layout_width="40dp"
             android:layout_height="40dp"
 
-            app:layout_row="1"
             app:layout_column="2"
+            app:layout_row="1"
 
             />
+
         <ImageView
             android:id="@+id/minus3image12"
             android:layout_width="40dp"
             android:layout_height="40dp"
 
-            app:layout_row="1"
             app:layout_column="2"
+            app:layout_row="1"
 
             />
 
@@ -239,17 +247,18 @@
             android:layout_width="40dp"
             android:layout_height="40dp"
 
-            app:layout_row="2"
             app:layout_column="0"
+            app:layout_row="2"
 
             />
+
         <ImageView
             android:id="@+id/minus3image20"
             android:layout_width="40dp"
             android:layout_height="40dp"
 
-            app:layout_row="2"
             app:layout_column="0"
+            app:layout_row="2"
 
             />
 
@@ -303,8 +312,8 @@
             android:layout_width="40dp"
             android:layout_height="40dp"
 
-            app:layout_row="2"
             app:layout_column="2"
+            app:layout_row="2"
 
             />
 
@@ -316,17 +325,13 @@
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:layout_marginLeft="13dp"
         >
-
 
         <TextView
             android:id="@+id/pointsLabel"
             android:layout_width="100dp"
             android:layout_height="25dp"
-            android:layout_margin="10dp"
-            android:text="Points:  "
+            android:text="      Points:"
             android:textColor="@color/cardview_light_background"
             android:textSize="20dp"
             android:textStyle="bold" />
@@ -334,16 +339,13 @@
 
         <TextView
             android:id="@+id/pointsLabeValue"
-            android:layout_width="100dp"
+            android:layout_width="50dp"
             android:layout_height="25dp"
-            android:layout_alignParentEnd="true"
-
-            android:layout_marginTop="10dp"
-            android:layout_marginRight="220dp"
-            android:gravity="left"
+            android:layout_toRightOf="@id/pointsLabel"
             android:text="0"
-            android:textColor="@color/cardview_light_background"
+            android:gravity="left"
 
+            android:textColor="@color/cardview_light_background"
             android:textSize="20dp"
             android:textStyle="bold" />
 
@@ -351,10 +353,8 @@
             android:id="@+id/timeLeftLael"
             android:layout_width="100dp"
             android:layout_height="25dp"
-            android:layout_alignParentEnd="true"
-            android:layout_marginTop="10dp"
-            android:layout_marginRight="40dp"
-            android:gravity="left"
+            android:layout_toRightOf="@id/pointsLabeValue"
+            android:gravity="center_horizontal"
             android:text="Time left:"
 
             android:textColor="@color/cardview_light_background"
@@ -365,10 +365,7 @@
             android:id="@+id/timeLeftText"
             android:layout_width="50dp"
             android:layout_height="25dp"
-            android:layout_alignParentEnd="true"
-            android:layout_marginTop="10dp"
-            android:layout_marginRight="1dp"
-
+            android:layout_toRightOf="@id/timeLeftLael"
             android:gravity="left"
             android:text="30"
             android:textColor="@color/cardview_light_background"
@@ -381,3 +378,4 @@
 </LinearLayout>
 
 
+</ScrollView>
