@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+
+        android:background="@drawable/background"
+        tools:context=".HallOfFame">
+
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="130dp"
+            android:layout_marginLeft="10dp"
+            android:gravity="center"
+
+            android:background="@drawable/halloffamelogo" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="120dp"
+            android:layout_marginLeft="130dp"
+            android:gravity="center"
+
+            android:background="@drawable/cup" />
+
+        <TableLayout
+            android:id="@+id/playersTable"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginHorizontal="10dp"
+            android:background="#BDBDBD">
+
+        </TableLayout>
+
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:gravity="center"
+
+            >
+
+            <androidx.cardview.widget.CardView
+                android:gravity="center"
+                android:id="@+id/returnButton"
+                android:layout_width="170dp"
+                android:layout_height="65dp"
+                android:layout_centerHorizontal="false"
+                android:layout_marginTop="20dp"
+                app:cardBackgroundColor="@color/cardview_shadow_start_color"
+                app:cardCornerRadius="10dp"
+
+                android:layout_marginEnd="20dp"
+                app:cardElevation="100dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+
+                    >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:textColor="@color/cardview_light_background"
+                        android:text="Back"
+
+                        android:textSize="20dp" />
+                    >
+                </RelativeLayout>
+
+            </androidx.cardview.widget.CardView>
+
+
+            <androidx.cardview.widget.CardView
+                android:gravity="center"
+
+                android:id="@+id/mapButton"
+                android:layout_width="170dp"
+                android:layout_height="65dp"
+                android:layout_centerHorizontal="false"
+                android:layout_toRightOf="@id/returnButton"
+                android:layout_marginTop="20dp"
+                app:cardCornerRadius="10dp"
+                app:cardBackgroundColor="@color/colorAccent"
+                app:cardElevation="10dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:textColor="@color/cardview_light_background"
+                        android:text="Players Location"
+                        android:textSize="20dp" />
+                    >
+                </RelativeLayout>
+
+            </androidx.cardview.widget.CardView>
+
+
+        </RelativeLayout>
+
+
+    </LinearLayout>
+
+</ScrollView>
